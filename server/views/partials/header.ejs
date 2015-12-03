@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
+
+  <!-- Custom CSS -->
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="container bg">
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+        aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div> <!-- navbar-header -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <% if(title == "Home" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+              </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        
+          <!-- if displayName is set then display the admin nav -->
+          <% if (displayName) { %>
+            <% if(title == "Users" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="/users">User List</a>
+              </li>
+            <% if(title == "Todo List" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="/todoList">Todo List</a>
+              </li>
+              <li class="navbar-text">User:
+                <%= displayName %>
+              </li>
+              <li>
+                <a href="/logout">
+                  <button type="button" class="btn-sm btn-danger" aria-label="Left Align" >
+                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                  </button>
+                </a>
+              </li>
+            
+          <!-- else display login and register buttons -->
+          <% } else { %>
+            <% if(title == "Register" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="/register">
+                  <button type="button" class="btn-sm btn-primary" aria-label="Left Align" >
+                    Register
+                  </button>
+                </a>
+              </li>  
+            <% if(title == "Login" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="/login">
+                  <button type="button" class="btn-sm btn-primary" aria-label="Left Align" >
+                    Login
+                  </button>
+                </a>
+              </li>
+            <% } %>
+              
+        </ul> <!-- nav navbar-nav navbar-right -->
+      </div> <!-- collapse navbar-collapse -->
+    </div> <!-- container-fluid -->
+  </nav> <!-- navbar navbar-inverse -->
+ 
