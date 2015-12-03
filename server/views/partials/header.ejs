@@ -31,6 +31,12 @@
       </div> <!-- navbar-header -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+            <h1 style="color:white;"><strong>surv-ez.com</strong></h1>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        
+          <!-- if displayName is set then display the admin nav -->
+          <% if (displayName) { %>
             <% if(title == "Home" ) { %>
               <li class="active">
             <% } else { %>
@@ -38,11 +44,6 @@
             <% } %>
                 <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
               </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-        
-          <!-- if displayName is set then display the admin nav -->
-          <% if (displayName) { %>
             <% if(title == "Users" ) { %>
               <li class="active">
             <% } else { %>
@@ -50,12 +51,19 @@
             <% } %>
                 <a href="/users">User List</a>
               </li>
-            <% if(title == "Todo List" ) { %>
+            <% if(title == "Create Survey" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
-                <a href="/todoList">Todo List</a>
+                <a href="#">Create Survey</a>
+              </li>
+            <% if(title == "View Survey" ) { %>
+              <li class="active">
+            <% } else { %>
+              <li>
+            <% } %>
+                <a href="#">View Survey</a>
               </li>
               <li class="navbar-text">User:
                 <%= displayName %>
@@ -70,24 +78,25 @@
             
           <!-- else display login and register buttons -->
           <% } else { %>
-            <% if(title == "Register" ) { %>
+            <% if(title == "Home" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
+                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+              </li>
+
+              <li>
                 <a href="/register">
-                  <button type="button" class="btn-sm btn-primary" aria-label="Left Align" >
+                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
                     Register
                   </button>
                 </a>
               </li>  
-            <% if(title == "Login" ) { %>
-              <li class="active">
-            <% } else { %>
+
               <li>
-            <% } %>
                 <a href="/login">
-                  <button type="button" class="btn-sm btn-primary" aria-label="Left Align" >
+                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
                     Login
                   </button>
                 </a>
