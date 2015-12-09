@@ -7,26 +7,17 @@
   </title>
 
   <!-- CSS Section -->
-  <link rel="stylesheet" href="../lib/materialize/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="../lib/Materialize/dist/css/materialize.min.css">
   <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
-
+  
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   <!-- Custom CSS -->
   <link rel='stylesheet' href='/stylesheets/style.css' />
-  
-  <!-- JS -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="../lib/materialize/dist/js/materialize.min.js"></script>
-  <script>
-    $( document ).ready(function(
-      $(".button-collapse").sideNav();
-    ) {
-        
-    });
-  </script>
-  
 </head>
 
-<body class="bg">
+<body>
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">SURV-EZ.COM</a>
@@ -39,7 +30,7 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                <a href="/">Home</a>
               </li>
             <% if(title == "Users" ) { %>
               <li class="active">
@@ -53,22 +44,22 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="#">Create Survey</a>
+                <a href="/create">Create Survey</a>
               </li>
             <% if(title == "View Survey" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
-                <a href="#">View Survey</a>
+                <a href="/view">View Survey</a>
               </li>
               <li class="navbar-text">User:
                 <%= displayName %>
               </li>
               <li>
                 <a href="/logout">
-                  <button type="button" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                  <button type="button" class="waves-effect waves-light btn">
+                     Logout
                   </button>
                 </a>
               </li>
@@ -80,12 +71,12 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                <a href="/">Home</a>
               </li>
 
               <li>
                 <a href="/register">
-                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
+                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
                     Register
                   </button>
                 </a>
@@ -93,7 +84,7 @@
 
               <li>
                 <a href="/login">
-                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
+                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
                     Login
                   </button>
                 </a>
@@ -122,22 +113,22 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="#">Create Survey</a>
+                <a href="/create">Create Survey</a>
               </li>
             <% if(title == "View Survey" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
-                <a href="#">View Survey</a>
+                <a href="/view">View Survey</a>
               </li>
               <li class="navbar-text">User:
                 <%= displayName %>
               </li>
               <li>
                 <a href="/logout">
-                  <button type="button" class="btn btn-danger">
-                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                  <button type="button" class="waves-effect waves-light btn">
+                     Logout
                   </button>
                 </a>
               </li>
@@ -154,7 +145,7 @@
 
               <li>
                 <a href="/register">
-                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
+                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
                     Register
                   </button>
                 </a>
@@ -162,7 +153,7 @@
 
               <li>
                 <a href="/login">
-                  <button type="button" class="btn btn-primary" aria-label="Left Align" >
+                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
                     Login
                   </button>
                 </a>

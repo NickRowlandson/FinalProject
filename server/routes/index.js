@@ -22,34 +22,18 @@ router.get('/', function (req, res, next) {
     });
 });
 
-/* Render projects page. */
-router.get('/projects', function (req, res, next) {
-    res.render('projects', {
-        title: 'Projects',
+/* Render create survey page. */
+router.get('/create', function (req, res, next) {
+    res.render('surveys/createSurvey', {
+        title: 'Create Survey',
         displayName: req.user ? req.user.displayName : ''
     });
 });
 
-/* Render skills page. */
-router.get('/skills', function (req, res, next) {
-    res.render('skills', {
-        title: 'Skills',
-        displayName: req.user ? req.user.displayName : ''
-    });
-});
-
-/* Render interests page. */
-router.get('/interests', function (req, res, next) {
-    res.render('interests', {
-        title: 'Interests',
-        displayName: req.user ? req.user.displayName : ''
-    });
-});
-
-/* Render contact page. */
-router.get('/contact', function (req, res, next) {
-    res.render('contact', {
-        title: 'Contact',
+/* Render view survey page. */
+router.get('/view', function (req, res, next) {
+    res.render('surveys/viewSurvey', {
+        title: 'View Survey',
         displayName: req.user ? req.user.displayName : ''
     });
 });
