@@ -1,14 +1,13 @@
 <% include ../partials/header.ejs %>
 
-<main class="container panel panel-default">
+<main class="panel panel-default">
     <h3><strong>Users(Admin Only)</strong></h3>
     <div class="panel-body">
         <div class="panel-heading">
             <a href="/users/add" title="Add User" style="color:#0079B4;"><i class="fa fa-plus-circle"></i> Add a new User</a>
         </div> <!-- panel-heading -->
         <% if (users.length > 0) { %>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="responsive-table">
                 <thead>
                     <tr>
                         <th>User</th>
@@ -29,19 +28,19 @@
                     </td>
                     <td>
                         <% var date = new Date(users[i].created);
-                         var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
+                            var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
                         <%= dateString %>
                     </td>
                     <td>
                         <% date = new Date(users[i].updated);
-                         var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
+                            var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
                         <%= dateString %>
                     </td>
                     <td>
-                        <a href="/users/<%= users[i]._id %>" title="Edit" class="btn btn-primary">
+                        <a href="/users/<%= users[i]._id %>" title="Edit" class="btn-sm btn-primary">
                             <i class="fa fa-pencil-square-o"></i>
                         </a>
-                        <a href="/users/delete/<%= users[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');" class="btn btn-danger">
+                        <a href="/users/delete/<%= users[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');" class="btn-sm btn-danger">
                             <i class="fa fa-trash-o"></i>
                         </a>
                     </td>   
@@ -49,10 +48,9 @@
                 <% } %>
                 </tbody>
             </table>
-        </div> <!-- panel-body -->
         <% } %>
     </div><!-- panel panel-default -->
-
 </main>
+
 <% include ../partials/boot.ejs %>
 <% include ../partials/footer.ejs %>
