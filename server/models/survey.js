@@ -3,14 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var SurveySchema = new Schema({
-
-  provider:String,
-  providerId: String,
-  providerData: {},
+  name: String,
+  description: String,
+  creator: {type: Schema.ObjectId, ref: 'User'},
   created: Number,
   updated: Number
 }, {
-  collection: 'surveyInfo'
+  collection: 'surveys'
 });
 
 module.exports = mongoose.model('Survey', SurveySchema);

@@ -14,14 +14,16 @@
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <!-- Custom CSS -->
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='../stylesheets/style.css' />
 </head>
 
 <body>
-  <nav>
+  <nav class="green">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">SURV-EZ.COM</a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <div style="margin-left:20px;">
+        <a href="/" class="brand-logo">SURV-EZ.COM</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
       <ul class="right hide-on-med-and-down">
         <!-- if displayName is set then display the admin nav -->
           <% if (displayName) { %>
@@ -30,7 +32,7 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/">Home</a>
+                <a href="/"><i class="material-icons">home</i></a>
               </li>
             <% if(title == "Users" ) { %>
               <li class="active">
@@ -71,7 +73,7 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/">Home</a>
+                <a href="/"><i class="material-icons">home</i></a>
               </li>
 
               <li>
@@ -99,7 +101,7 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                <a href="/"><i class="material-icons">home</i></a>
               </li>
             <% if(title == "Users" ) { %>
               <li class="active">
@@ -140,7 +142,7 @@
             <% } else { %>
               <li>
             <% } %>
-                <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+                <a href="/"><i class="material-icons">home</i></a>
               </li>
 
               <li>
