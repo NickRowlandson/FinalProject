@@ -4,7 +4,49 @@
 
 	<main>
     	<h3><strong>Your Surveys</strong></h3>
-     
+     	<% if (surveys.length > 0) { %>
+            <table class="responsive-table striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date Created</th>
+                        <th>Date Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                </tbody>
+                <% for (var i = 0; i < surveys.length; i++) { %>
+                <tr>
+                    <td>
+                        <%= surveys[i].name %>
+                    </td>
+                    <td>
+                        <%= surveys[i].description %>
+                    </td>
+                    <td>
+                        <% var date = new Date(surveys[i].created);
+                            var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
+                        <%= dateString %>
+                    </td>
+                    <td>
+                        <% date = new Date(surveys[i].updated);
+                            var dateString = date.toDateString() + " " + date.toLocaleTimeString(); %>
+                        <%= dateString %>
+                    </td>
+                    <td>
+                        <a href="/survey/<%= surveys[i]._id %>" title="Edit" class="waves-effect waves-light btn">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                        <a href="/survey/delete/<%= surveys[i]._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');" class="waves-effect waves-light btn" style="background-color:red;">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
+                    </td>   
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        <% } %>
 	</main>
 	
 <% include ../partials/boot.ejs %>
