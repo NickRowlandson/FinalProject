@@ -43,11 +43,13 @@ router.get('/add', requireAuth, function (req, res, next) {
 router.post('/add', requireAuth, function (req, res, next) {
     var user = new User(req.body);
     var hashedPassword = user.generateHash(user.password);
-    User.create({
-        email: req.body.email,
-        username: req.body.username,
+    console.log("Processing new user...");
+    User.create({      
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: hashedPassword,
-        displayName: req.body.displayName,
+        username: req.body.username,
+        displayName: req.body.firstName,
         provider: 'local',
         created: Date.now(),
         updated: Date.now()

@@ -22,12 +22,12 @@ module.exports = function (passport) {
     passReqToCallback: true
   },
 
-    function (req, username, password, done) {
+    function (req, email, password, done) {
 
       // asynchronous process
       process.nextTick(function () {
         User.findOne({
-          'username': username,
+          'username': email,
         }, function (err, user) {
           if (err) {
             return done(err);
@@ -36,7 +36,7 @@ module.exports = function (passport) {
           // no valid user found
           if (!user) {
             // third parameter is a flash warning message
-            return done(null, false, req.flash('loginMessage', 'Incorrect username'));
+            return done(null, false, req.flash('loginMessage', 'Incorrect email'));
           }
 
           // no valid password entered
@@ -54,13 +54,13 @@ module.exports = function (passport) {
     passport.use('local-registration', new LocalStrategy({
         passReqToCallback : true
     },
-    function(req, username, password, done) {
-
+    function(req, email, password, done) {
+        console.log("Registering via passports local strategy...");
         // asynchronous process
         process.nextTick(function() {
             // if the user is not already logged in:
             if (!req.user) {
-                User.findOne({ 'username' : username },
+                User.findOne({ 'username' : email },
                 function(err, user) {
                     // if errors
                     if (err) {
@@ -69,11 +69,19 @@ module.exports = function (passport) {
                     // check email
                     if (user) {
                         return done(null, false, req.flash('registerMessage',
-                        'The username is already taken.'));
+                        'The email is already taken.'));
                     }
                     else {
+                        var parsed = {};
+                        
+                        parsed['firstName'] = req.body.firstName;
+                        parsed['lastName'] = req.body.lastName;
+                        parsed['username'] = req.body.username;
+                        parsed['password'] = req.body.password;
+                        
                         // create the user
-                        var newUser = new User(req.body);
+                        var newUser = new User(parsed);
+                        newUser.displayName = req.body.firstName;
                         newUser.password = newUser.generateHash(password);
                         newUser.provider = 'local';
                         newUser.created = Date.now();

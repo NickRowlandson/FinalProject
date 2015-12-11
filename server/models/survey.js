@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var SurveySchema = new Schema({
   name: String,
-  description: String,
+  description: String, 
   creator: {type: Schema.ObjectId, ref: 'User'},
   created: Number,
   updated: Number

@@ -1,10 +1,29 @@
+<!--
+DATE:       DECEMBER 2015
+PROJECT:    SURV-EZ.COM (Create your own survey)
+BY:         Nicholas Rowlandson & Tim Harasym
+PURPOSE:    This application allows a user to register and login as an authenticated user. 
+            From there the user can choose to create a survey or view/edit past surveys.
+            Newly created surveys have the option of being displayed on the front page of SURV-EZ.
+-->
+
+<!-- Front Page -->
+
 <% include partials/header.ejs %>
+
 <main>
-      <div>
-            <div class="panel panel-default">
+      <div class="row">
+            <div class="col s12">
                   <h1 align="center"><strong>Welcome to Surv-EZ!</strong></h1><br \>       
             </div>
-      </div>
-</main>    
+            <div class="col s6 z-depth-3 panelColor">
+                  <h4>New</h4>
+            </div>
+            <div class="col s6 z-depth-3 panelColor">
+                  <h4>Recent</h4>
+            </div>
+      </div>   
+</main>   
+ 
 <% include partials/boot.ejs %>
 <% include partials/footer.ejs %>

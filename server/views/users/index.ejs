@@ -23,10 +23,10 @@
                 <% for (var i = 0; i < users.length; i++) { %>
                 <tr>
                     <td>
-                        <%= users[i].displayName %>
+                        <%= users[i].firstName + " " + users[i].lastName %>
                     </td>
                     <td>
-                        <%= users[i].email %>
+                        <%= users[i].username %>
                     </td>
                     <td>
                         <% var date = new Date(users[i].created);

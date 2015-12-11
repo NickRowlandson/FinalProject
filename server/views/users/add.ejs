@@ -2,32 +2,32 @@
 
 <% include ../partials/header.ejs %>
 
-<main class="panel panel-default">
+<main>
     <h3><strong>Add a New User</strong></h3>
-       <div class="panel-body">
+       <div>
         <form method="post">
             <fieldset class="form-group">
-                <label for="email">Email: *</label>
-                <input name="email" type="email" class="form-control" required autofocus />
+                <label for="firstName">First Name: *</label>
+                <input name="firstName" type="text" class="form-control" required />
             </fieldset>
             <fieldset class="form-group">
-                <label for="username">Username: *</label>
-                <input name="username" type="text" class="form-control" required />
+                <label for="lastName">Last Name: *</label>
+                <input name="lastName" type="text" class="form-control" required />
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="username">Email: *</label>
+                <input name="username" type="email" class="form-control" required autofocus />
             </fieldset>
             <fieldset class="form-group">
                 <label for="password">Password: *</label>
                 <input name="password" type="password" class="form-control" required />
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="displayName">Display Name: *</label>
-                <input name="displayName" type="text" class="form-control" required />
             </fieldset>
             <fieldset class="form-group text-right">
                 <input type="submit" class="btn btn-success" value="Submit"/>
             </fieldset>
         </form>
     </div>
-
 </main>
+
 <% include ../partials/boot.ejs %>
 <% include ../partials/footer.ejs %>

@@ -3,6 +3,7 @@ var passport = require('passport');
 var router = express.Router();
 
 var User = require('../models/user');
+var survey = require("./survey");
 
 /* Utility functin to check if user is authenticated */
 function requireAuth(req, res, next){
@@ -22,22 +23,6 @@ router.get('/', function (req, res, next) {
     });
 });
 
-/* Render create survey page. */
-router.get('/create', function (req, res, next) {
-    res.render('surveys/createSurvey', {
-        title: 'Create Survey',
-        displayName: req.user ? req.user.displayName : ''
-    });
-});
-
-/* Render view survey page. */
-router.get('/view', function (req, res, next) {
-    res.render('surveys/viewSurvey', {
-        title: 'View Survey',
-        displayName: req.user ? req.user.displayName : ''
-    });
-});
-
 /* Render Login page. */
 router.get('/login', function (req, res, next) {
     if (!req.user) {
@@ -53,14 +38,15 @@ router.get('/login', function (req, res, next) {
     }
 });
 
-/* Process the Login Request */
+/* Process login request */
 router.post('/login', passport.authenticate('local-login', {
+    //Success go to Users Page / Fail go to Login page
     successRedirect: '/users',
     failureRedirect: '/login',
     failureFlash: true
 }));
 
-/* Show Registration Page */
+/* Render Registration Page */
 router.get('/register', function (req, res, next) {
     if (!req.user) {
         res.render('register', {
@@ -74,12 +60,15 @@ router.get('/register', function (req, res, next) {
     }
 });
 
-/* POST signup data. */
-router.post('/register', passport.authenticate('local-registration', {
-    //Success go to Profile Page / Fail go to Signup page
-    successRedirect : '/users',
-    failureRedirect : '/register',
-    failureFlash : true
+/* Process register request */
+router.post('/register', function(req, res, next){
+    console.log(req.body)
+    next()
+}, passport.authenticate('local-registration', {
+    //Success go to Users Page / Fail go to Signup page
+    successRedirect: '/users',
+    failureRedirect: '/register',
+    failureFlash: true
 }));
 
 
@@ -87,15 +76,6 @@ router.post('/register', passport.authenticate('local-registration', {
 router.get('/logout', function (req, res){
   req.logout();
   res.redirect('/');
-});
-
-/* GET home page. */
-router.get('/todoList', requireAuth, function(req, res, next) {
-  res.render('todos/index', { 
-      title: 'Todo List',
-      displayName: req.user ? req.user.displayName : '',
-      username: req.user ? req.user.username : '' 
-  });
 });
 
 module.exports = router;
