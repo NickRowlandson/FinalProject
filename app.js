@@ -18,12 +18,6 @@ mongoose.connection.on('error', function () {
   console.error('MongoDB Connection Error');
 });
 
-// Routes Setup
-var routes = require('./server/routes/index');
-var users = require('./server/routes/users');
-var survey = require('./server/routes/survey');
-
-
 var app = express();
 
 // passport configuration
@@ -35,7 +29,6 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -52,40 +45,9 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/survey', survey);
-
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
-
+// Routes Setup
+var routes = require('./server/routes/index')(app);
+var users = require('./server/routes/users')(app);
+var survey = require('./server/routes/survey')(app);
 
 module.exports = app;
