@@ -3,8 +3,8 @@
 <% include ../partials/header.ejs %>
 
 	<main class="row">
+		<h3><strong>Create Survey</strong></h3>
 		<div class="col s6">
-			<h3><strong>Create Survey</strong></h3>
 			<form method="post">
 
 					<label for="name">Survey Name: *</label>
@@ -18,19 +18,24 @@
 						<option value="True/False">True/False</option>
 						<option value="Multiple Choice">Multiple Choice</option>
 					</select>
-
-					<div style="display:none;" id="trueFalse">
-						<a class="btn waves-effect waves-light" href="#" id="filldetails" onclick="addFields()">
-							<i class="material-icons right">add</i>
-							Add Question Field
-						</a>
+					
+					<div>
+						<div style="display:none;" id="trueFalse">
+							<a class="btn waves-effect waves-light" href="#" id="filldetails" onclick="addFields()">
+								<i class="material-icons right">add</i>
+								Add Question Field
+							</a>
+						</div>
+	
+						<div style="display:none;" id="multiple">
+							<a class="btn waves-effect waves-light" href="#" id="filldetails" onclick="addFields()">
+								<i class="material-icons right">add</i>
+								Add Question Field
+							</a>
+						</div>
 						<div id="container"/>
 					</div>
-
-					<div style="display:none;" id="multiple">
-						multiple
-					</div>
-
+					
 					<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 						<i class="material-icons right">send</i>
 					</button>
