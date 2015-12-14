@@ -3,7 +3,31 @@
 <script type="text/javascript" src="../lib/Materialize/dist/js/materialize.min.js"></script>
 <script>
 	$(document).ready(function(){
+	
 		// Activate the side menu 
 		$(".button-collapse").sideNav();
+		
+		// Activate select drop down
+		$('select').material_select();
+		
+		// Decide what the select options do
+		$('#choose').on('change', function() {
+			if (this.value == 'True/False')
+			{
+				$("#trueFalse").show();
+				$("#multiple").hide();
+			}
+			else if(this.value == 'Multiple Choice')
+			{
+				$("#multiple").show();
+				$("#trueFalse").hide();
+			}
+			else
+			{
+				$("#trueFalse").hide();
+				$("#multiple").hide();
+			}
+		});
+
 	});
 </script>

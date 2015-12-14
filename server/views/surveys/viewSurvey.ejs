@@ -10,6 +10,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Type</th>
+                        <th>Questions</th>
                         <th>Date Created</th>
                         <th>Date Updated</th>
                         <th></th>
@@ -23,6 +25,18 @@
                     </td>
                     <td>
                         <%= surveys[i].description %>
+                    </td>
+                    <td>
+                        <%= surveys[i].type %>
+                    </td>
+                    <td>
+                        <ul>
+                            <% for (var j = 0; j < surveys[i].questions.length; j++) {%>
+                                <li>
+                                <%= surveys[i].questions[j].text %>
+                                </li>
+                            <% } %>
+                        </ul>
                     </td>
                     <td>
                         <% var date = new Date(surveys[i].created);
