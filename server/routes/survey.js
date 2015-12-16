@@ -15,39 +15,94 @@ function requireAuth(req, res, next){
 module.exports = function(app){
     /* process the submission of a new survey */
     app.post('/survey/create', requireAuth, function (req, res, next) {
-        var questions = [];
-        for(var i = 0; i < req.body.questions.length; i++){
-            Question.create({
-                text: req.body.questions[i]
-                }, function(err, question){
-                    console.log("Created question: ", question._id);
+        if(req.body.options.length > 0){
+            var options = [];
+            for(var a = 0; a < req.body.options.length; a++){
+                Options.create({
+                    text: req.body.options[a]
+                }, function(err, multipleOption){
+                    console.log("Created Option: ", multipleOption._id);
                     if(err){
                         throw err;
                     }else{
-                        questions.push(question._id);
-                        if(questions.length == req.body.questions.length){
-                            console.log(questions);
-                            Survey.create({
-                                name: req.body.name,
-                                description: req.body.description,
-                                type: req.body.type,
-                                creator: req.user._id,
-                                created: Date.now(),
-                                updated: Date.now(),
-                                questions: questions
-                            }, function (err, Survey) {
-                                if (err) {
-                                    console.log(err);
-                                    res.end(err);
-                                }
-                                else {
-                                    res.redirect('/survey/view');
-                                }
-                            });
+                        options.push(multipleOption._id);
+                        if(options.length == req.body.options.length){
+                            var questions = [];
+                            for(var i = 0; i < req.body.questions.length; i++){
+                                Question.create({
+                                    text: req.body.questions[i],
+                                    options: options
+                                    }, function(err, question){
+                                        console.log("Created question: ", question._id);
+                                        if(err){
+                                            throw err;
+                                        }else{
+                                            questions.push(question._id);
+                                            if(questions.length == req.body.questions.length){
+                                                console.log(questions);
+                                                Survey.create({
+                                                    name: req.body.name,
+                                                    description: req.body.description,
+                                                    type: req.body.type,
+                                                    creator: req.user._id,
+                                                    created: Date.now(),
+                                                    updated: Date.now(),
+                                                    questions: questions
+                                                }, function (err, Survey) {
+                                                    if (err) {
+                                                        console.log(err);
+                                                        res.end(err);
+                                                    }
+                                                    else {
+                                                        res.redirect('/survey/view');
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }
+                                )
+                            } 
+                        }      
+                    }   
+                });
+            }
+        }
+        else 
+        {
+            var questions = [];
+            for(var i = 0; i < req.body.questions.length; i++){
+                Question.create({
+                    text: req.body.questions[i]
+                    }, function(err, question){
+                        console.log("Created question: ", question._id);
+                        if(err){
+                            throw err;
+                        }else{
+                            questions.push(question._id);
+                            if(questions.length == req.body.questions.length){
+                                console.log(questions);
+                                Survey.create({
+                                    name: req.body.name,
+                                    description: req.body.description,
+                                    type: req.body.type,
+                                    creator: req.user._id,
+                                    created: Date.now(),
+                                    updated: Date.now(),
+                                    questions: questions
+                                }, function (err, Survey) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.end(err);
+                                    }
+                                    else {
+                                        res.redirect('/survey/view');
+                                    }
+                                });
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
         }
         
     });

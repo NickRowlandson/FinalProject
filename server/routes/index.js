@@ -1,7 +1,8 @@
 var passport = require('passport');
 
 var User = require('../models/user');
-var survey = require("./survey");
+var Survey = require("../models/survey");
+var Response = require("../models/response");
 
 /* Utility functin to check if user is authenticated */
 function requireAuth(req, res, next){
@@ -14,12 +15,49 @@ function requireAuth(req, res, next){
 }
 
 module.exports = function(app){
+    
     /* Render home page. */
     app.get('/', function (req, res, next) {
-        res.render('index', {
-            title: 'Home',
-            displayName: req.user ? req.user.displayName : ''
+        Survey.find(function (err, surveys) {
+            res.render('index', {
+                surveys: surveys,
+                title: 'Home',
+                displayName: req.user ? req.user.displayName : ''
+            });
         });
+    });   
+    
+     /* Render take survey page. */
+    app.get('/takeSurvey/:id', function (req, res, next) {
+        var id = req.params.id;
+        Survey.find({ _id: id })
+        .populate("questions")
+        .populate("options")
+        .exec( function (err, survey) {
+            res.render('takeSurvey', {
+                survey: survey,
+                title: 'Take Survey',
+                displayName: req.user ? req.user.displayName : ''
+            });
+        });
+    });   
+    
+    /* process the submission of a survey */
+    app.post('/takeSurvey/:id', function (req, res, next) {
+        for(var i = 0; i < req.body.answer.length; i++){
+            Response.create({
+                answer: req.body.answer[i], 
+                }, function(err, answer){
+                    console.log("Created response: ", answer._id);
+                    if(err){
+                        throw err;
+                    }else{
+
+                    }
+                }
+            )
+        }
+        
     });
     
     /* Render Login page. */
@@ -40,7 +78,7 @@ module.exports = function(app){
     /* Process login request */
     app.post('/login', passport.authenticate('local-login', {
         //Success go to Users Page / Fail go to Login page
-        successRedirect: '/users',
+        successRedirect: '/survey/view',
         failureRedirect: '/login',
         failureFlash: true
     }));
