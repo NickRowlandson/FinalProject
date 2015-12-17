@@ -15,7 +15,7 @@ function requireAuth(req, res, next){
 module.exports = function(app){
     /* process the submission of a new survey */
     app.post('/survey/create', requireAuth, function (req, res, next) {
-        if(req.body.options.length > 0){
+        if(req.body.options){
             var options = [];
             for(var a = 0; a < req.body.options.length; a++){
                 Options.create({
@@ -34,6 +34,7 @@ module.exports = function(app){
                                     options: options
                                     }, function(err, question){
                                         console.log("Created question: ", question._id);
+                                        
                                         if(err){
                                             throw err;
                                         }else{
@@ -49,6 +50,7 @@ module.exports = function(app){
                                                     updated: Date.now(),
                                                     questions: questions
                                                 }, function (err, Survey) {
+                                                    console.log("question options: ", questions.options);
                                                     if (err) {
                                                         console.log(err);
                                                         res.end(err);

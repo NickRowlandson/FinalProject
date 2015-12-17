@@ -32,7 +32,7 @@ module.exports = function(app){
         var id = req.params.id;
         Survey.find({ _id: id })
         .populate("questions")
-        .populate("options")
+        .populate("questions.options")
         .exec( function (err, survey) {
             res.render('takeSurvey', {
                 survey: survey,
