@@ -2,10 +2,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ResponseSchema = new Schema({
-  answer: String, 
+var AnswerSchema = new Schema({
+  question: {type: Schema.ObjectId, ref: 'Question'},
+  answer: {type: String}
 }, {
   collection: 'answers'
 });
 
-module.exports = mongoose.model('Answer', ResponseSchema);
+module.exports = mongoose.model('Answer', AnswerSchema);

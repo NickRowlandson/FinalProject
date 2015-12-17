@@ -15,6 +15,11 @@ function requireAuth(req, res, next){
 module.exports = function(app){
     /* process the submission of a new survey */
     app.post('/survey/create', requireAuth, function (req, res, next) {
+        //if only one question, put it into array
+        if(typeof req.body.questions != "object"){
+            var q = req.body.questions;
+            req.body.questions = [q];
+        }
         if(req.body.options){
             var options = [];
             for(var a = 0; a < req.body.options.length; a++){
@@ -113,7 +118,8 @@ module.exports = function(app){
     app.get('/survey/create', requireAuth, function (req, res, next) {
         res.render('surveys/createSurvey', {
             title: 'Create Survey',
-            displayName: req.user ? req.user.displayName : ''
+            displayName: req.user ? req.user.displayName : '', 
+            isAdmin: req.user ? req.user.admin : false
         });
     });
     
@@ -125,7 +131,8 @@ module.exports = function(app){
             res.render('surveys/viewSurvey', {
                 title: 'My Surveys',
                 surveys: surveys,
-                displayName: req.user ? req.user.displayName : ''
+                displayName: req.user ? req.user.displayName : '', 
+                isAdmin: req.user ? req.user.admin : false
             });
         });
     });
@@ -161,7 +168,8 @@ module.exports = function(app){
                     res.render('surveys/editSurvey', {
                         title: 'Edit Survey',
                         surveys: surveys,
-                        displayName: req.user ? req.user.displayName : ''
+                        displayName: req.user ? req.user.displayName : '', 
+                        isAdmin: req.user ? req.user.admin : false
                     });
                 }
             });

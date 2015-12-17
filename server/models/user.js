@@ -9,6 +9,7 @@ var UserSchema = new Schema({
   password: String,
   username: String,
   displayName: String,
+  admin: {type:Boolean, default:false},
   salt: String,
   provider:String,
   providerId: String,

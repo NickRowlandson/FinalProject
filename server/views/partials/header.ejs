@@ -36,12 +36,21 @@
             <% } %>
                 <a href="/"><i class="material-icons">home</i></a>
               </li>
-            <% if(title == "Users" ) { %>
+            <% if(isAdmin){ %>
+              <% if(title == "Users" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/users">User List</a>
+                </li>
+            <% } %>
+            <% if(title == "Edit Profile" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
-                <a href="/users">User List</a>
+                <a href="/profile">Edit Profile</a>
               </li>
             <% if(title == "Create Survey" ) { %>
               <li class="active">
@@ -105,12 +114,21 @@
             <% } %>
                 <a href="/"><i class="material-icons">home</i></a>
               </li>
-            <% if(title == "Users" ) { %>
+            <% if(isAdmin){ %>
+              <% if(title == "Users" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/users">User List</a>
+                </li>
+            <% } %>
+            <% if(title == "Edit Profile" ) { %>
               <li class="active">
             <% } else { %>
               <li>
             <% } %>
-                <a href="/users">User List</a>
+                <a href="/profile">Edit Profile</a>
               </li>
             <% if(title == "Create Survey" ) { %>
               <li class="active">

@@ -22,7 +22,8 @@ module.exports = function(app){
                 res.render('users/index', {
                     title: 'Users',
                     users: users,
-                    displayName: req.user ? req.user.displayName : ''
+                    displayName: req.user ? req.user.displayName : '', 
+                    isAdmin: req.user ? req.user.admin : false
                 });
             }
         });
@@ -32,7 +33,8 @@ module.exports = function(app){
     app.get('/users/add', requireAuth, function (req, res, next) {
         res.render('users/add', {
             title: 'Users',
-            displayName: req.user ? req.user.displayName : ''
+            displayName: req.user ? req.user.displayName : '', 
+            isAdmin: req.user ? req.user.admin : false
         });
     });
     
@@ -78,7 +80,8 @@ module.exports = function(app){
                     res.render('users/edit', {
                         title: 'Edit User',
                         user: user,
-                        displayName: req.user ? req.user.displayName : ''
+                        displayName: req.user ? req.user.displayName : '', 
+                        isAdmin: req.user ? req.user.admin : false
                     });
                 }
             });
@@ -103,6 +106,36 @@ module.exports = function(app){
             }
             else {
                 res.redirect('/users');
+            }
+        });
+    });
+    
+    /* Render the User Edit Page */
+    app.get('/profile', requireAuth, function (req, res, next) { 
+        //show the edit view
+        res.render('users/editProfile', {
+            title: 'Edit Profile',
+            user: req.user,
+            displayName: req.user ? req.user.displayName : '', 
+            isAdmin: req.user ? req.user.admin : false
+        });
+    });
+    
+    /* process the edit profile form submission */
+    app.post('/profile', requireAuth, function (req, res, next) {
+        var user = new User(req.body);
+        user.password = user.generateHash(user.password);
+        user._id = req.user._id;
+        user.updated = Date.now();
+        
+        // use mongoose to do the update
+        User.update({ _id: req.user._id }, user, function (err) {
+            if (err) {
+                console.log(err);
+                res.end(err);
+            }
+            else {
+                res.redirect('/');
             }
         });
     });

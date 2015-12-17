@@ -1,28 +1,27 @@
 <% include partials/header.ejs %>
 
 	<main class="row">
-		<% for (var i = 0; i < survey.length; i++) { %>
-		<h3><strong><%= survey[i].name %></strong></h3>
+		<h3><strong><%= survey.name %></strong></h3>
 			<div class="col s6">
 
-				<% if(survey[i].type == "Agree/Disagree") { %>
+				<% if(survey.type == "Agree/Disagree") { %>
 					<form method="post">
-							<% for (var j = 0; j < survey[i].questions.length; j++) { %>
+							<% for (var j = 0; j < survey.questions.length; j++) { %>
 								
 								<h5>
 									<%= "Question" + " " + (j+1) + ":" %> 
 								</h5>
 								<h6> 
-									<%= survey[i].questions[j].text %>
+									<%= survey.questions[j].text %>
 								</h6>
 								<p>
 								
-								<input name="answer<%= j %>" type="radio" id="true<%= j+1 %>" required/>
-								<label for="true<%= j+1 %>">Agree</label>
+								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="true<%= j %>" required/>
+								<label for="true<%= j %>">Agree</label>
 								</p>
 								<p>
-								<input name="answer<%= j %>" type="radio" id="false<%= j+i %>" required />
-								<label for="false<%= j+i %>">Disagree</label>
+								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="false<%= j %>" required />
+								<label for="false<%= j %>">Disagree</label>
 
 								</p>
 								
@@ -34,29 +33,27 @@
 					</form>
 				<% } else {%>
 					<form method="post">
-						<% for (var j = 0; j < survey[i].questions.length; j++) { %>
+						<% for (var j = 0; j < survey.questions.length; j++) { %>
 							
 							<h5>
 								<%= "Question" + " " + (j+1) + ":" %> 
 							</h5>
 							<h6> 
-								<%= survey[i].questions[j].text %>
+								<%= survey.questions[j].text %>
 							</h6>
-
 							
 								<p>
-								<input name="answer<%= j %>" type="radio" id="1option<%= j %>" required/>
-								<label for="1option<%= j %>"><%= survey[i].questions[j].options[0].text %></label>
+								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="1option<%= j %>" required/>
+								<label for="1option<%= j %>"><%= survey.questions[j].options[0].text %></label>
 								</p>
 								<p>
-								<input name="answer<%= j %>" type="radio" id="2option<%= j %>" required/>
-								<label for="2option<%= j %>"><%= survey[i].questions[j].options[1].text %></label>
+								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="2option<%= j %>" required/>
+								<label for="2option<%= j %>"><%= survey.questions[j].options[1].text %></label>
 								</p>
 								<p>
-								<input name="answer<%= j %>" type="radio" id="3option<%= j %>" required/>
-								<label for="3option<%= j %>"><%= survey[i].questions[j].options[2].text %></label>
+								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="3option<%= j %>" required/>
+								<label for="3option<%= j %>"><%= survey.questions[j].options[2].text %></label>
 								</p>
-					
 
 						<% } %>
 						<button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -66,7 +63,6 @@
 					</form>
 				<% } %>
 			</div>
-		<% } %>
 	</main>
 	
 <% include partials/boot.ejs %>

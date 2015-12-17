@@ -2,7 +2,7 @@ var passport = require('passport');
 
 var User = require('../models/user');
 var Survey = require("../models/survey");
-var Response = require("../models/response");
+var Answer = require("../models/response");
 
 /* Utility functin to check if user is authenticated */
 function requireAuth(req, res, next){
@@ -22,7 +22,8 @@ module.exports = function(app){
             res.render('index', {
                 surveys: surveys,
                 title: 'Home',
-                displayName: req.user ? req.user.displayName : ''
+                displayName: req.user ? req.user.displayName : '', 
+                isAdmin: req.user ? req.user.admin : false
             });
         });
     });   
@@ -30,34 +31,46 @@ module.exports = function(app){
      /* Render take survey page. */
     app.get('/takeSurvey/:id', function (req, res, next) {
         var id = req.params.id;
-        Survey.find({ _id: id })
+        Survey.findOne({ _id: id })
         .populate("questions")
-        .populate("questions.options")
-        .exec( function (err, survey) {
-            res.render('takeSurvey', {
-                survey: survey,
-                title: 'Take Survey',
-                displayName: req.user ? req.user.displayName : ''
+        .exec( function (err, s) {
+            Survey.populate(s, {
+                path: 'questions.options',
+                model: 'Option'
+            },
+            function(err, survey) {
+                res.render('takeSurvey', {
+                    survey: survey,
+                    title: 'Take Survey',
+                    displayName: req.user ? req.user.displayName : '', 
+                    isAdmin: req.user ? req.user.admin : false
+                });
             });
+            
         });
     });   
     
-    /* process the submission of a survey */
+    /* process the submission of a taken survey */
     app.post('/takeSurvey/:id', function (req, res, next) {
-        for(var i = 0; i < req.body.answer.length; i++){
-            Response.create({
-                answer: req.body.answer[i], 
-                }, function(err, answer){
-                    console.log("Created response: ", answer._id);
-                    if(err){
-                        throw err;
-                    }else{
-
+        console.log(req.body);
+        for (var key in req.body) {
+            if(key.indexOf("answer_") > -1){
+                var questionid = key.split("_")[1];
+                Answer.create({
+                    question: questionid,
+                    answer: req.body["answer_"+questionid], 
+                    }, function(err, answer){
+                        
+                        if(err){
+                            throw err;
+                        }else{
+                            
+                        }
                     }
-                }
-            )
+                )
+            }
         }
-        
+        return res.redirect('/');
     });
     
     /* Render Login page. */
@@ -66,7 +79,8 @@ module.exports = function(app){
             res.render('login', {
                 title: 'Login',
                 messages: req.flash('loginMessage'),
-                displayName: req.user ? req.user.displayName : ''
+                displayName: req.user ? req.user.displayName : '', 
+                isAdmin: req.user ? req.user.admin : false
             });
             return;
         }
@@ -89,7 +103,8 @@ module.exports = function(app){
             res.render('register', {
                 title: 'Register',
                 messages: req.flash('registerMessage'),
-                displayName: req.user ? req.user.displayName : ''
+                displayName: req.user ? req.user.displayName : '', 
+                isAdmin: req.user ? req.user.admin : false
             });
         }
         else {
