@@ -14,6 +14,7 @@
                     <tr>
                         <th>User</th>
                         <th>Email</th>
+                        <th>Admin</th>
                         <th>Date Created</th>
                         <th>Date Updated</th>
                         <th></th>
@@ -27,6 +28,13 @@
                     </td>
                     <td>
                         <%= users[i].username %>
+                    </td>
+                    <td>
+                        <% if (users[i].admin) { %>
+                            yes
+                        <% } else { %>
+                            no
+                        <% } %>
                     </td>
                     <td>
                         <% var date = new Date(users[i].created);

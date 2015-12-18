@@ -2,7 +2,7 @@ var Survey = require('../models/survey');
 var Question = require('../models/question');
 var Options = require('../models/option');
 
-/* Utility functin to check if user is authenticatd */
+/* Utility function to check if user is authenticatd */
 function requireAuth(req, res, next){
 
   // check if the user is logged in
@@ -137,7 +137,7 @@ module.exports = function(app){
         });
     });
     
-    /* run delete on the selected user */
+    /* run delete on the selected survey */
     app.get('/survey/delete/:id', requireAuth, function (req, res, next) {
         var id = req.params.id;
         Survey.remove({ _id: id }, function (err) {
@@ -178,7 +178,7 @@ module.exports = function(app){
         }
     });
     
-    /* process the edit form submission */
+    /* process the edit survey submission */
     app.post('/survey/:id', requireAuth, function (req, res, next) {
         var id = req.params.id;
         var survey = new Survey(req.body);

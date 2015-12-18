@@ -4,7 +4,7 @@ var User = require('../models/user');
 var Survey = require("../models/survey");
 var Answer = require("../models/response");
 
-/* Utility functin to check if user is authenticated */
+/* Utility function to check if user is authenticated */
 function requireAuth(req, res, next){
 
   // check if the user is logged in
@@ -29,7 +29,7 @@ module.exports = function(app){
         });
     });   
     
-     /* Render take survey page. */
+    /* Render take survey page. */
     app.get('/takeSurvey/:id', function (req, res, next) {
         var id = req.params.id;
         Survey.findOne({ _id: id })
