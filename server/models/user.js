@@ -1,3 +1,4 @@
+// USER MODEL
 // Import mongoose and bcrypt
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
