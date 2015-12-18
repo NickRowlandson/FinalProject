@@ -9,8 +9,8 @@
   </title>
 
   <!-- CSS Section -->
-  <link rel="stylesheet" href="../lib/Materialize/dist/css/materialize.min.css">
-  <link rel="stylesheet" href="../lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../lib/Materialize/dist/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="../lib/font-awesome/css/font-awesome.min.css">
   
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,168 +20,170 @@
 </head>
 
 <body>
-  <nav class="green">
-    <div class="nav-wrapper">
-      <div style="margin-left:20px;">
-        <a href="/" class="brand-logo">SURV-EZ.COM</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      </div>
-      <ul class="right hide-on-med-and-down">
-        <!-- if displayName is set then display the admin nav -->
-          <% if (displayName) { %>
-            <% if(title == "Home" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/"><i class="material-icons">home</i></a>
-              </li>
-            <% if(isAdmin){ %>
-              <% if(title == "Users" ) { %>
+  <header>
+    <nav class="green">
+      <div class="nav-wrapper">
+        <div style="margin-left:20px;">
+          <a href="/" class="brand-logo">SURV-EZ.COM</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+        <ul class="right hide-on-med-and-down">
+          <!-- if displayName is set then display the admin nav -->
+            <% if (displayName) { %>
+              <% if(title == "Home" ) { %>
                 <li class="active">
               <% } else { %>
                 <li>
               <% } %>
-                  <a href="/users">User List</a>
+                  <a href="/"><i class="material-icons">home</i></a>
                 </li>
-            <% } %>
-            <% if(title == "Edit Profile" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/profile">Edit Profile</a>
-              </li>
-            <% if(title == "Create Survey" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/survey/create">Create Survey</a>
-              </li>
-            <% if(title == "View Survey" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/survey/view">My Surveys</a>
-              </li>
-              <li class="navbar-text">
-                <a href="#"><strong>User: <%= displayName %></strong></a>
-              </li>
-              <li>
-                <a href="/logout">
-                  <button type="button" class="waves-effect waves-light btn">
-                     Logout
-                  </button>
-                </a>
-              </li>
-            
-          <!-- else display login and register buttons -->
-          <% } else { %>
-            <% if(title == "Home" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/"><i class="material-icons">home</i></a>
-              </li>
-
-              <li>
-                <a href="/register">
-                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
-                    Register
-                  </button>
-                </a>
-              </li>  
-
-              <li>
-                <a href="/login">
-                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
-                    Login
-                  </button>
-                </a>
-              </li>
-            <% } %>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <!-- if displayName is set then display the admin nav -->
-          <% if (displayName) { %>
-            <% if(title == "Home" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/"><i class="material-icons">home</i></a>
-              </li>
-            <% if(isAdmin){ %>
-              <% if(title == "Users" ) { %>
+              <% if(isAdmin){ %>
+                <% if(title == "Users" ) { %>
+                  <li class="active">
+                <% } else { %>
+                  <li>
+                <% } %>
+                    <a href="/users">User List</a>
+                  </li>
+              <% } %>
+              <% if(title == "Edit Profile" ) { %>
                 <li class="active">
               <% } else { %>
                 <li>
               <% } %>
-                  <a href="/users">User List</a>
+                  <a href="/profile">Edit Profile</a>
                 </li>
-            <% } %>
-            <% if(title == "Edit Profile" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/profile">Edit Profile</a>
-              </li>
-            <% if(title == "Create Survey" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/survey/create">Create Survey</a>
-              </li>
-            <% if(title == "View Survey" ) { %>
-              <li class="active">
-            <% } else { %>
-              <li>
-            <% } %>
-                <a href="/survey/view">My Surveys</a>
-              </li>
-              <li class="navbar-text">
+              <% if(title == "Create Survey" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/survey/create">Create Survey</a>
+                </li>
+              <% if(title == "View Survey" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/survey/view">My Surveys</a>
+                </li>
+                <li class="navbar-text">
                   <a href="#"><strong>User: <%= displayName %></strong></a>
-              </li>
-              <li>
-                <a href="/logout">
-                  <button type="button" class="waves-effect waves-light btn">
-                     Logout
-                  </button>
-                </a>
-              </li>
-            
-          <!-- else display login and register buttons -->
-          <% } else { %>
-            <% if(title == "Home" ) { %>
-              <li class="active">
+                </li>
+                <li>
+                  <a href="/logout">
+                    <button type="button" class="waves-effect waves-light btn">
+                      Logout
+                    </button>
+                  </a>
+                </li>
+              
+            <!-- else display login and register buttons -->
             <% } else { %>
-              <li>
-            <% } %>
-                <a href="/"><i class="material-icons">home</i></a>
-              </li>
-
-              <li>
-                <a href="/register">
-                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
-                    Register
-                  </button>
-                </a>
-              </li>  
-
-              <li>
-                <a href="/login">
-                  <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
-                    Login
-                  </button>
-                </a>
-              </li>
-            <% } %>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
+              <% if(title == "Home" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/"><i class="material-icons">home</i></a>
+                </li>
+  
+                <li>
+                  <a href="/register">
+                    <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
+                      Register
+                    </button>
+                  </a>
+                </li>  
+  
+                <li>
+                  <a href="/login">
+                    <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
+                      Login
+                    </button>
+                  </a>
+                </li>
+              <% } %>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <!-- if displayName is set then display the admin nav -->
+            <% if (displayName) { %>
+              <% if(title == "Home" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/"><i class="material-icons">home</i></a>
+                </li>
+              <% if(isAdmin){ %>
+                <% if(title == "Users" ) { %>
+                  <li class="active">
+                <% } else { %>
+                  <li>
+                <% } %>
+                    <a href="/users">User List</a>
+                  </li>
+              <% } %>
+              <% if(title == "Edit Profile" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/profile">Edit Profile</a>
+                </li>
+              <% if(title == "Create Survey" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/survey/create">Create Survey</a>
+                </li>
+              <% if(title == "View Survey" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/survey/view">My Surveys</a>
+                </li>
+                <li class="navbar-text">
+                    <a href="#"><strong>User: <%= displayName %></strong></a>
+                </li>
+                <li>
+                  <a href="/logout">
+                    <button type="button" class="waves-effect waves-light btn">
+                      Logout
+                    </button>
+                  </a>
+                </li>
+              
+            <!-- else display login and register buttons -->
+            <% } else { %>
+              <% if(title == "Home" ) { %>
+                <li class="active">
+              <% } else { %>
+                <li>
+              <% } %>
+                  <a href="/"><i class="material-icons">home</i></a>
+                </li>
+  
+                <li>
+                  <a href="/register">
+                    <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
+                      Register
+                    </button>
+                  </a>
+                </li>  
+  
+                <li>
+                  <a href="/login">
+                    <button type="button" class="waves-effect waves-light btn" aria-label="Left Align" >
+                      Login
+                    </button>
+                  </a>
+                </li>
+              <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container">

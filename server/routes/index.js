@@ -22,6 +22,7 @@ module.exports = function(app){
             res.render('index', {
                 surveys: surveys,
                 title: 'Home',
+                messages: req.flash('surveyTakenMessage'),
                 displayName: req.user ? req.user.displayName : '', 
                 isAdmin: req.user ? req.user.admin : false
             });
@@ -70,6 +71,7 @@ module.exports = function(app){
                 )
             }
         }
+        req.flash('surveyTakenMessage', 'Survey submitted. Thank you!')
         return res.redirect('/');
     });
     
@@ -90,7 +92,7 @@ module.exports = function(app){
     });
     
     /* Process login request */
-    app.post('/login', passport.authenticate('local-login', {
+    app.post('/login', passport.authenticate('local-login',  {
         //Success go to Users Page / Fail go to Login page
         successRedirect: '/survey/view',
         failureRedirect: '/login',

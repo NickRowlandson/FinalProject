@@ -14,15 +14,14 @@
 								<h6> 
 									<%= survey.questions[j].text %>
 								</h6>
-								<p>
 								
-								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="true<%= j %>" required/>
-								<label for="true<%= j %>">Agree</label>
+								<p>
+									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="true<%= j %>" required/>
+									<label for="true<%= j %>">Agree</label>
 								</p>
 								<p>
-								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="false<%= j %>" required />
-								<label for="false<%= j %>">Disagree</label>
-
+									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="false<%= j %>" required />
+									<label for="false<%= j %>">Disagree</label>
 								</p>
 								
 							<% } %>
@@ -43,16 +42,16 @@
 							</h6>
 							
 								<p>
-								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="1option<%= j %>" required/>
-								<label for="1option<%= j %>"><%= survey.questions[j].options[0].text %></label>
+									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="1option<%= j %>" required/>
+									<label for="1option<%= j %>"><%= survey.questions[j].options[0].text %></label>
 								</p>
 								<p>
-								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="2option<%= j %>" required/>
-								<label for="2option<%= j %>"><%= survey.questions[j].options[1].text %></label>
+									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="2option<%= j %>" required/>
+									<label for="2option<%= j %>"><%= survey.questions[j].options[1].text %></label>
 								</p>
 								<p>
-								<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="3option<%= j %>" required/>
-								<label for="3option<%= j %>"><%= survey.questions[j].options[2].text %></label>
+									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="3option<%= j %>" required/>
+									<label for="3option<%= j %>"><%= survey.questions[j].options[2].text %></label>
 								</p>
 
 						<% } %>
