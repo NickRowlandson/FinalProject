@@ -11,9 +11,9 @@
 								<h5>
 									<%= "Question" + " " + (j+1) + ":" %> 
 								</h5>
-								<h6> 
+								<strong> 
 									<%= survey.questions[j].text %>
-								</h6>
+								</strong>
 								
 								<p>
 									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="true<%= j %>" required/>
@@ -37,9 +37,9 @@
 							<h5>
 								<%= "Question" + " " + (j+1) + ":" %> 
 							</h5>
-							<h6> 
+							<strong> 
 								<%= survey.questions[j].text %>
-							</h6>
+							</strong>
 							
 								<p>
 									<input name="answer_<%= survey.questions[j]._id %>" type="radio" id="1option<%= j %>" required/>

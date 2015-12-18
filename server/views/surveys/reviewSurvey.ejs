@@ -2,28 +2,7 @@
 
 <% include ../partials/header.ejs %>
 
-    <h3><strong>Edit Survey</strong></h3>
-    <div>
-        <form method="post">
-
-                <label for="name">Survey Name: *</label>
-                <input name="name" type="text" class="form-control" required value="<%= surveys.name %>" />
-
-                <label for="description">Description: *</label>
-                <input name="description" type="text" class="form-control" required value="<%= surveys.description %>" />
-
-                <button type="submit" class="waves-effect waves-light btn" title="Update">
-                    <i class="fa fa-pencil-square-o"></i> Update
-                </button>
-                <a href="/survey/delete/<%= surveys._id %>" title="Delete" onclick="return confirm('Are you sure you want to delete this?');" class="waves-effect waves-light btn" style="background-color:red;">
-                    <i class="fa fa-trash-o"></i> Delete
-                </a>
-                <a href="/survey/view" title="Cancel"  class="waves-effect waves-light btn">
-                    <i class="fa fa-undo"></i>  Cancel
-                </a>
-
-        </form>
-    </div>
+    <h3><strong>Review Survey</strong></h3>
 
 <% include ../partials/boot.ejs %>
 <% include ../partials/footer.ejs %>

@@ -137,6 +137,21 @@ module.exports = function(app){
         });
     });
     
+    /* Render review survey page. */
+    app.get('/survey/review/:id', requireAuth, function (req, res, next) {
+        var id = req.params.id;
+        Survey.find({ _id: id })
+        .populate("questions")
+        .exec(function (err, surveys) {
+            res.render('surveys/reviewSurvey', {
+                title: 'Review',
+                surveys: surveys,
+                displayName: req.user ? req.user.displayName : '', 
+                isAdmin: req.user ? req.user.admin : false
+            });
+        });
+    });
+    
     /* run delete on the selected survey */
     app.get('/survey/delete/:id', requireAuth, function (req, res, next) {
         var id = req.params.id;
